@@ -3,9 +3,12 @@ import streamlit as st
 import pandas as pd
 from fpdf import FPDF
 from datetime import datetime
+import os
+
 
 
 # Base de datos
+os.makedirs("database", exist_ok=True)
 conexion = sqlite3.connect("database/taller.db")
 cursor = conexion.cursor()
 
