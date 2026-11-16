@@ -83,13 +83,8 @@ def generar_pdf(cliente, patente, servicios, total, factura_id):
         f"TOTAL: ${total:,.0f}",
         ln=True
     )
-    os.makedirs("facturas", exist_ok=True)
-
-    nombre_archivo = f"facturas/Factura_{factura_id}.pdf"
-
-    pdf.output(nombre_archivo)
-
-    return nombre_archivo
+   
+    return bytes(pdf.output())
 
 # Interfaz
 st.title("🚗 Taller Mecánico")
@@ -210,8 +205,12 @@ if st.button("Guardar Factura"):
 
     st.success("✅ Factura y servicios guardados correctamente")
 
-    st.info(f"PDF generado: {archivo_pdf}")
-
+    st.download_button(
+    label="📄 Descargar Factura PDF",
+    data=archivo_pdf,
+    file_name=f"Factura_{factura_id}.pdf",
+    mime="application/pdf"
+    )
     #st.rerun()
 
 
