@@ -83,7 +83,8 @@ def generar_pdf(cliente, patente, servicios, total, factura_id):
         f"TOTAL: ${total:,.0f}",
         ln=True
     )
-
+    os.makedirs("facturas", exist_ok=True)
+    
     nombre_archivo = f"facturas/Factura_{factura_id}.pdf"
 
     pdf.output(nombre_archivo)
